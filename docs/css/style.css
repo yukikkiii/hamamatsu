@@ -361,7 +361,7 @@ h1 {
     transform: translateY(-50%);
     background: url("../img/contact_icon.png") no-repeat center center / 100% auto;
 }
-.footer {
+.footer-inner {
     background : -moz-linear-gradient(52.67% 161.15% 100deg,rgba(31, 155, 211, 1) 31.84%,rgba(95, 177, 222, 1) 87.35%);
   background : -webkit-linear-gradient(100deg, rgba(31, 155, 211, 1) 31.84%, rgba(95, 177, 222, 1) 87.35%);
   background : -webkit-gradient(linear,52.67% 161.15% ,47.33% -61.15% ,color-stop(0.3184,rgba(31, 155, 211, 1) ),color-stop(0.8735,rgba(95, 177, 222, 1) ));
@@ -372,6 +372,9 @@ h1 {
 }
 .footer-logo {
     width: 300px;
+}
+.copyright {
+    color: #5FB1DE
 }
 @media screen and (max-width: 1200px) {
     .h3, h3 {
@@ -422,7 +425,7 @@ h1 {
         width: 100%;
         transform: translate(-50%, -50%);
     }
-    .contact-inner > div:first-child {
+    .contact-left {
         border-right: solid 1px #fff;
     }
     
@@ -449,10 +452,13 @@ h1 {
     .pc {
         display: none;
     }
+    .blue-btn {
+        font-size: 1.2rem;
+    }
     .type-card .card-title {
-    position: relative;
-    min-height: 58px;
-}
+        position: relative;
+        min-height: 58px;
+    }
     .carousel-item:nth-child(2) {
         background-image: url("../img/mv_sp.jpg");
     }
@@ -485,8 +491,10 @@ h1 {
         position: relative;
 
     }
-    .contact-inner > div:first-child {
+    .contact-left {
         border-bottom: solid 1px #fff;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
     }
 
 }
