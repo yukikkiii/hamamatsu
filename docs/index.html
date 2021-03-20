@@ -1,536 +1,320 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-    <title></title>
-  </head>
-  <body>
-    <header class="header bg-light">
-        <nav class="navbar navbar-light navbar-expand-md p-0">
-            <a href="#" class="navbar-brand py-0 pl-3">
-                <svg viewBox="0 0 236.09 77.44">
-                    <g><g><g id="lkicsq"><image id="lkicsq-2" data-name="lkicsq" width="250" height="82" transform="scale(0.94)" xlink:href="data:image/png;base64,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"/></g></g></g></svg>
-            </a>
-            <button class="navbar-toggler collapsed mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">HOME</span>
-                            <span class="small">ホーム</span></sapn>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">PURPOSE</span>
-                            <span class="small">目的別フィルム</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center border-left py-3" href="#">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand bg-transparent border-0">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
 
-                            <span class="d-block font-weight-bold h5">TYPE</span>
-                            <span class="small">フィルムの種類</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">PRICE</span>
-                            <span class="small">料金表</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">Q&A</span>
-                            <span class="small">よくある質問</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">SHOP</span>
-                            <span class="small">店舗情報</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link last text-center border-left py-3" href="#">
-                            <span class="d-block font-weight-bold h5">CONTACT</span>
-                            <span class="small">お問い合わせ</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link border-0">
+      <img src="img/logo.png" alt="AdminLTE Logo" class="brand-image py-3 d-block mx-auto">
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Alexander Pierce</a>
+        </div>
+      </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
         
-    </header>
-    <main class="main">
-        <div class="mv">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <div class="h1-wrap text-center text-white">
-                        <h1 class="kozuka-font border-bottom d-inline-block pb-4 mb-4">
-                            <span class="blue-txt h1-span1">ガラスフィルム</span>で
-                            <br class="pc">
-                            <span class="h1-span2 d-inline">窓</span>の<span class="h1-span2 d-inline">お悩み</span>を<span class="h1-span2 d-inline">解決します！</span>
-                        </h1>
-                        <p class="h5">窓のお悩みを解決するガラスフィルムの施工や車の整備を浜松市で行っています</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="h1-wrap text-center text-white">
-                        <h1 class="kozuka-font border-bottom d-inline-block pb-4 mb-4">
-                            <span class="blue-txt h1-span1">ガラスフィルム</span>で
-                            <br class="pc">
-                            <span class="h1-span2 d-inline">窓</span>の<span class="h1-span2 d-inline">お悩み</span>を<span class="h1-span2 d-inline">解決します！</span>
-                        </h1>
-                        <p class="h5">窓のお悩みを解決するガラスフィルムの施工や車の整備を浜松市で行っています</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="h1-wrap text-center text-white">
-                        <h1 class="kozuka-font border-bottom d-inline-block pb-4 mb-4">
-                            <span class="blue-txt h1-span1">ガラスフィルム</span>で
-                            <br class="pc">
-                            <span class="h1-span2 d-inline">窓</span>の<span class="h1-span2 d-inline">お悩み</span>を<span class="h1-span2 d-inline">解決します！</span>
-                        </h1>
-                        <p class="h5">窓のお悩みを解決するガラスフィルムの施工や車の整備を浜松市で行っています</p>
-                    </div>
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-        </div>
-        <div>
-            <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-light justify-content-center py-3">
-              <li class="breadcrumb-item" aria-current="page"><a href="#" class="small">浜松市のガラスフィルムはミナッチ工房</a></li>
-              <li class="breadcrumb-item active small" aria-current="page">ガラスフィルム</li>
-            </ol>
-          </nav>
-        </div>
-        <section class="section purpose py-5">
-            <div>
-                <div class="h2-wrap pb-3 text-center">
-                    <h2>PURPOSE</h2>
-                    <p class="small">目的別フィルム</p>
-                </div>
-                <div class="container-xl content text-center">
-                    <div class="row">
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_1.jpg" alt="目的別フィルム1">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                <h3 class="border-bottom border-secondary pb-3">遮熱・省エネ</h3>
-                                <p>窓ガラスからの日射を大幅カット<br>
-                                    （冷房効率がアップ）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_2.jpg" alt="目的別フィルム2">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">紫外線対策</h3>
-                                    <p>紫外線を99％カット！<br>
-                                        （お肌と家具の日焼け防止）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_3.jpg" alt="目的別フィルム3">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">目隠し効果</h3>
-                                    <p>開放感を損なわない室内<br>
-                                        （プライバシー保護）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_4.jpg" alt="目的別フィルム4">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">災害対策</h3>
-                                    <p>窓ガラスの飛散防止</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_5.jpg" alt="目的別フィルム5">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">防犯対策</h3>
-                                    <p>防犯性能の高い建物部品目録<br>
-                                        （セキュリティ強化）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_6.jpg" alt="目的別フィルム6">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">ガラスの装飾</h3>
-                                    <p>高い透明度のデザイン性<br>
-                                        （手軽な価格でお洒落に！）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="purpose-item col-6 col-md-3 mb-5">
-                            <div class="card h-100 bg-transparent border-0">
-                                <div class="img-wrap bd-placeholder-img card-img-top">
-                                    <img class="img-fluid" src="./img/purpose_7.jpg" alt="目的別フィルム7">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h3 class="border-bottom border-secondary pb-3">冬季の断熱</h3>
-                                    <p>冬の窓際の寒さにお困りの方<br>
-                                        （暖房効率がアップ）</p>
-                                </div>
-                                <div class="bg-transparent card-footer border-0 px-0">
-                                    <a href="#" class="more-btn border rounded border-secondary small">
-                                        <span>MORE</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section type py-5">
-            <div class="text-center">
-                <div class="h2-wrap pb-3 mb-4">
-                    <h2>TYPE</h2>
-                    <p class="small">フィルムの種類</p>
-                </div>
-                <p class="mb-4 px-3">ミナッチ工房は徹底した市場調査による窓フィルムの低価格での仕入れを行っています。<br>
-                    幅広い知識と経験を活かした商品選択と美しい仕上がりの施工技術で窓フィルムの効果を実感していただけます。</p>
-                <div class="container-xl content">
-            
-                <div class="row">
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_1.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>遮熱・省エネ<br class="pc">フィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_2.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>紫外線カット<br class="pc">フィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_3.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>防犯フィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_4.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>飛散防止フィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_5.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>目隠しフィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_6.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>デザインフィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_7.png">
-                            </div>
-                            <h3 class="card-title">
-                                <span>防虫フィルム</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-6 mb-5">
-                        <a href="#" class="card card-body type-card border-0 rounded">
-                            <div class="card-img mx-auto">
-                                <img src="./img/type_8.png">
-                            </div>
-                            
-                            <h3 class="card-title">
-                                <span>ポリカーボネート<br class="pc">アクリル用</span>
-                            </h3>
-                            <img src="./img/btn_arrow.png" width="40px" class="mx-auto">
-                        </a>
-                    </div>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link bg-gold">
+              <i class="nav-icon fas fa-home"></i>
+              <p>ホーム</p>
+            </a>
+          </li>
+          <li class="nav-header gold">Investment</li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link bg-gray">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>申込</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link bg-gray">
+              <i class="nav-icon fas fa-history"></i>
+              <p>履歴</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link bg-gray">
+              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <p>紹介料</p>
+            </a>
+          </li>
 
-                </div>
-                </div>
-                
+          <li class="nav-header gold">Account</li>
+          <li class="nav-item bg-gray">
+            <a href="#" class="nav-link bg-gray">
+              <i class="nav-icon fas fa-user"></i>
+              <p>プロフィール</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper bg-transparent">
+    <!-- Content Header (Page header) -->
+    <div class="content-header text-center mw">
+        <h1 class="m-2 noto-serif">Dashboard</h1>
+        <p>出資者向けのダッシュボードです。</p>
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content mw">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-sm-6 col-12">
+            <!-- small box -->
+            <div class="small-box header-card left-card">
+              <div class="inner text-center">
+                <p class="m-0 gold">出資口数</p>
+                <h3 class="gold"><span class="noto-serif header-card--num pr-1">47</span>口</h3>
+              </div>
             </div>
-        </section>
-        <section class="section qa-section">
-            <div>
-                <div class="h2-wrap pb-3 text-center mb-4">
-                    <h2>Q&A</h2>
-                    <p class="small">よくある質問</p>
-                </div>
-                <div class="container-xl content">
-                    <div class="accordion" id="accordion">
-                        <div class="card border-0 mb-3">
-                          <div class="card-header bg-white px-4" id="Q1-heading">
-                            <div class="h5 q-wrap mb-0 py-2">
-                                <p class="mb-0 px-5">大体の見積り金額を電話で教えてもらえますか？</p>
-                                <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q1" aria-expanded="false" aria-controls="Q1">
-                                </button>
-                            </div>
-                          </div>
-                          <div id="Q1" class="collapse" aria-labelledby="Q1-heading" data-parent="#accordion">
-                            <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card border-0 mb-3">
-                            <div class="card-header bg-white px-4" id="Q2-heading">
-                              <div class="h5 q-wrap mb-0 py-2">
-                                  <p class="mb-0 px-5">もともと貼ってあるフィルムはいくらで剥がしてもらえますか？</p>
-                                  <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q2" aria-expanded="false" aria-controls="Q2">
-                                  </button>
-                              </div>
-                            </div>
-                            <div id="Q2" class="collapse" aria-labelledby="Q2-heading" data-parent="#accordion">
-                              <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 mb-3">
-                            <div class="card-header bg-white px-4" id="Q3-heading">
-                              <div class="h5 q-wrap mb-0 py-2">
-                                  <p class="mb-0 px-5">途中でキャンセルもしくはフィルムの変更は可能ですか？</p>
-                                  <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q3" aria-expanded="false" aria-controls="Q3">
-                                  </button>
-                              </div>
-                            </div>
-                            <div id="Q3" class="collapse" aria-labelledby="Q3-heading" data-parent="#accordion">
-                              <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 mb-3">
-                            <div class="card-header bg-white px-4" id="Q4-heading">
-                              <div class="h5 q-wrap mb-0 py-2">
-                                  <p class="mb-0 px-5">土日祝日でも施工していますか？</p>
-                                  <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q4" aria-expanded="false" aria-controls="Q4">
-                                  </button>
-                              </div>
-                            </div>
-                            <div id="Q4" class="collapse" aria-labelledby="Q4-heading" data-parent="#accordion">
-                              <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 mb-3">
-                            <div class="card-header bg-white px-4" id="Q5-heading">
-                              <div class="h5 q-wrap mb-0 py-2">
-                                  <p class="mb-0 px-5">引越後でもガラスフィルムの施工は可能ですか？</p>
-                                  <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q5" aria-expanded="false" aria-controls="Q5">
-                                  </button>
-                              </div>
-                            </div>
-                            <div id="Q5" class="collapse" aria-labelledby="Q5-heading" data-parent="#accordion">
-                              <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 mb-3">
-                            <div class="card-header bg-white px-4" id="Q6-heading">
-                              <div class="h5 q-wrap mb-0 py-2">
-                                  <p class="mb-0 px-5">現物サンプルを見たい時にはどうすれば良いですか？</p>
-                                  <button class="btn btn-link plus" type="button" data-toggle="collapse" data-target="#Q6" aria-expanded="false" aria-controls="Q6">
-                                  </button>
-                              </div>
-                            </div>
-                            <div id="Q6" class="collapse" aria-labelledby="Q6-heading" data-parent="#accordion">
-                              <div class="card-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blue-btn-wrap">
-                        <a href="" class="blue-btn shadow-sm qa-btn">
-                            <span>Q & A</span>
-                        </a>
-                    </div>
-                </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-sm-6 col-12">
+            <!-- small box -->
+            <div class="small-box header-card right-card">
+              <div class="inner text-center">
+                <p class="m-0 red">USDT 金額合計</p>
+                <h3 class="red"><span class="noto-serif header-card--num pr-1">23,500</span>円</h3>
+              </div>
             </div>
-        </section>
-        <section class="section contact">
-            <div class="row container-xl mx-auto contact-inner text-center py-5">
-                <div class="col-12 col-md-6 contact-left">
-                    <p class="contact-p text-center mb-3">
-                        <span class="pb-1">お急ぎの方はお電話から</span>
-                    </p>
-                    <div class="tel w-75 mx-auto mb-2">
-                        <img src="./img/tel.png" alt="電話番号" class="img-fluid">
-                    </div>
-                    <p class="small mb-0">受付：9時〜18時</p>
-                </div>
-                <div class="col-12 col-md-6 contact-right">
-                    <p class="contact-p text-center mb-3">
-                        <span class="pb-1">お問い合わせフォームからいつでも</span>
-                    </p>
-                    <div>
-                        <a href="#" class="blue-btn contact-btn px-3">
-                            <span>お問い合わせはこちら</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="text-center pt-4">
-                <div class="footer-logo mx-auto">
-                    <svg viewBox="0 0 348.36 114.26"><g><g><g id="d3vEM2"><g id="d3vEM2.psd"><image id="d3vEM2-2" data-name="d3vEM2" width="250" height="82" transform="scale(1.39)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPwAAABTCAYAAAC74WpcAAAACXBIWXMAAAf/AAAH/wFdbWgRAAAa+UlEQVR4Xu2de3BcV33Hv7+7613ZpM7GuCRkYmflSHu2TJrKJJAGWkeClkcmJDItj0JIJGh5N7ZaSpgOsUakKYRH5cBAp7yshCmUV6OkHaBpwRsX0pBALDwZ2HNXtm+cAI7tJItJ5F1Ze0//OOeuzl7dx+5qZcvR+cxotHvP79w9d/d+z/md1++SEAIGg2FlYMUZGAyG5w5G8AbDCsII3mBYQRjBGwwrCCN4g2EFkYwzWOYkAeQAbASQAbBO/aVVWgrADIAnAZQBHAZwCMCv1HuDYUVxpgo+C+BiAC8C8AeYF3wGwFrI6/L+KgCOA3gGUvAOpOj3Avi5+jMYVgR0hszDrwHQD+CVAF4BoC/SujUcAA8D+D6AAkwFYHgOs9wF/xoAbwJwNYD1MbaRzMzMwHVdnDhxAolEApYlhy+OHj0KAFi9ejUuuOACAPgJgG8CuBPSIzAYnjMsR8GvA/B+AH8BIB9jW8dxHJw8eRKu64KI4F2X/roVurq6KhdeeOGdAD4LYF+cvcFwJrCcBP8CANsgxb42xhblchlHjhxpS8xA8xWBZVno7e39IoBbIPv+BsMZy3IR/A4AN0H21UOp1WqYnp5uWqyd5Nxzz53NZDKjAD4WZ2swLFdOt+CvAvAJyNH2UB577DHMzMxEmbSFEAJEFGnjr1wYYz8B8B7Ivr7BcEZxugS/HsA4gOuijI4ePYqnn346sjUPE613bCmuj4iQy+VuUm8/HmlsMCwjTofgXwXga5CDc6HYth0rVn1gzn88ruXuFIyxewC8DXKu32BY1pxqwf89gFujDPbv349arVYXbdRou2VZWLVq1YFsNusAOPDkk0/OPP/5z/dW1bmQK+0sAL8D4HwA+YMHD54PYNPs7Cz8tDs2wBh7HMCVAA7E2RoMp5NTJXgLwNcB/HmUUalUWiA4/f3q1avnNm7c+CCAPQDuA2CjPZFtAnAJgMsBvPTXv/71luPHjy9q1WEikTje09MzALmIx2BYlpwKwZ8FKc4Xhxk8/vjjePbZZwPTVq1ahU2bNt0L2Q24F3IdfKc5H7Kr8Qbbtq9q5TvxeQUuY+zlAB6IyGIwnDaWWvDrAfwfgJ4wgwMHDuDkyZMNx4QQyOfzhyEXvfwbgOmgvEvEJgDvefTRR99ZqVRi1wP4SSQS6OnpuRzAg3G2BsOpZikFfx6AH0NubAmEcw5A9sVd1wUAMMamAXwGwOchN76cLtYBeO9TTz1109GjR8/yJ0bNAqRSqbnu7m6G9robBsOSsVSCXw/gZ5CuciD+UfhkMomLLrroZgD/EJbnNHEegFHbtt/dzHflufiMsSMAGMw2XMMyYqkE/wtErIMvlUr1Fh0AGGOTkCvt7LA8y4AXA/gs5/wP4ww9j4Uxtg9y+67BsCxYiog3/40IsTuOUxe7ZVlgjL0PwFYsb7EDcvT9CsbYJ6OM9EE8zvklkN0Tg2FZ0OkW/jOQm19C8Vx5xtghAG/AmTm4dc3+/fu/BgBzc3Nr4tYLMMZeC+B7C85iMJxiOin4N0LOtYeiif0HAF4HGX7qTKUHAGZmZr7/2GOPbYxatLNmzZpnNmzYcA6AuUADg+EU0SmX/iwAX4ky4Jx7Yv8WZOSaM1nsgJwqnF6zZs3vM8b2hS3zBYCZmZnY78dgOBV0qoX/LmR0mkDK5TKeeOIJMMa+DOAdYXZNsBbAjZBBKhsn7ztHGsBRADvjDDVSAH7EOb8MCF+iyxi7FGYlnuE00gnBvwXAv0YZcM7BGLsXwKuj7GJYC+AhyCi1S4pt28jlcvcAuDbOVsMC8ONisXhZ2MYdM2pvCMJxnMzs7OxIKpUar1arQ5ZlFXp7e6fi8rVDJ1z6f4lKVGK3sTixn4VTKHYhBDjn1wC4K85ewwVweT6ftwHZyvuFr0btrwrIa1hBlEqlvmKx2O84TgYAKpVKnxBiR6VS6QMwXqvVtsacom0WtWEEwAcgxRhIuVwGET0D4OW+pPcDuBTAwi1r0j3+AoD71ftTLnYPzvkgY+zbAP4sPFcDLoA/TqVSj83Ozqb0BM3N/wSA7wRlXiyO42RnZ2eHiehgb2/vhJ42PT3db1nWgOu6u3t6egqBJ1gmlEqlISFEdyqVGs9ms+Xp6el+13UHiOguf8t34MCB7a7rnrN+/frxTCazpIucVEu8F0B29erVWzds2DAZl8dPqVTqc113LxGhWq0WAAzE5QlCL0sqldqazWabKstiBJ8CMBZloPrtrwZwzJf0Lsi48mH8AlLwXZDLc5sOZtku3jJfD6915py/njH2dcjouc1wpLu7+3Wc8//SD2pz8y9ijL0M8xVax5idnR0XQgwKIVAqleCJ3nGcTK1W212r1QBgR7FY7M7n846el3M+DmC7/5wRTFmWNawL0LbtQSFEK16RI4QYy+fzE96BYrGYJaJdAFCpVABgtFar7QKQFUJsgSYQ27bHhBA7AODYsWNrM5nMCFAX1SjkcwrimBJC3O7/PoKoVCp9RJQFgGeffXYzgKZEplOr1TKa59cPAF1dXVOVSuUjXV1dUydOnBhJJpOFsPweellmZ2ebLstiBH8jImLQlUolMMZuRvCNfQjRgr9X/X8IMeGvOoFf7AD8Lf0bGWMuZCTdZriXMfY5zvl7Q9JvBvDakLTFMOi9EEJ0e6/n5ub8cfyzkPH4dVoROwD0ua6723GczSoeAYhoW4tjQlki2mXbdjmXy00CQD6fdzxPy7Isbx+GA1nmrJ6ZiLZ4n6d/rhBiK7TvIoZ+IhpyHKc7m80GegiO42SUwOrfo2VZG4vFYn8ymUSYx/TLX/6y78SJE6NCiAwAL6JyQyXEOd8NyAamUqlsSSQSzqpVqyYWnm2+HMpe/01jy+KxGMH/dVRib2/vw2h/XfxVkKKIqhQ6gm03t8CPc/5mxhjQvOjft3bt2jceP358QTx9zvlrGGPno8NbfaPWAjSRXoBqcVog47ruINSMBhHtQevngBDiBmgtFBE5QoisECKrvQd8ghdC9GmvFxNxKDM7OzsCYFQ/qDyWcciKqSGDEGKIiIZqtZrXYBTS6fRWvdKYmZkZd123H9HU073fp1KpHIJWFtu2B13XHSeiBeUAmiuLR7uCfykidsEpmu33BhEZFadTNBNGS0eJ3gXw1jhbAHjhC1/41uPHjze49hrvgazUOkbctUSlp9PprdVqdUgIcU6oEWSrCu0m1fdE9PT0jBaLxYMA6t5FEJZlbRRCDEWYOJDi7gcA13UPeTd6sVjsz+fzhVKp1AfNZbcsa7f3OpVKjavuQBRbiKjfe6Ouq47qWizonkRUmv3VavUutNEnj6qIvXIECT2C0LK0K/h3xaR/EgtdxmUF5zxwkUwcnPO3KNG/Lc4W0rX/Aef8FQFpb0aHBb8YVGuwM85O9fX7vfdCiIKervfHw7BtexDAkHboPj1dCFH3FIrFYhbAbshQ5oBq5f0tZzKZrI8lqGtpaK2DsG37oOdFBDCsv/HulUQiASEEXNcNEmm/4zgZr2Wt1WpjAfdYBo2PSivo5yEiJ51Oj2vpDeXQ7BoqiriyeLQjeAvA6yPSZyB3vi1bvD57XIsYBuf8OsaYt0w28AfRGCaiR4WYD6wphMD09HRPT09PHkAxOnvzhLUUc3NzbVVuIeh946k254sb1jek0+kJ/T0RHdSuI4vGxsPzHq7Ujk2F9b+j8LoOcXYAykQ0EHSt3mCn9/uq8ZICAOTz+YL32qNYLPYTUd0bYYy14hGULcsaAICosnjv9bJ4tDMP/2JEj35+FHJ6alnSbJ89CiJCsVgcKhaLQwC+FGN+KJfLfdV7o90YAHBNeLbWEUKEVWJO0EE/pVKpj3P+NOdcqGvzpw9B60cLIW732ziOk+Gc7+WcC9u2d/nTi8ViVnfniWjCL1YicrS3A/oIOhFtUa2+XvEU0AYtVIKhFZsQ4m4g/Fy2bQ9yzgXn/Glv3j3KRl1bGFO9vb2xZYmiHcFHLRypAPiniPTTSqt99ihbz6XinL8dct1AFDf5W191g/xxaI4WcRwno3sRkI/DBiBHvn3mWQQghNgGVZkT0S795nMcJ+O6ru5qOkHue6VSGYRyWYUQQ/6Kg9SUm4frumPwoUaaywBgWZZ3HZPq/xQRbdPtgyqeU4VlWQ0i9o+SCzkgCQD1EfYAPI8nk0wmsyE2scSVBWhP8H8akfYNLNNNMUERceMIq7X95+Gc/yWiVxw+nsvl/h1Y4Ha/DO39Bgvw30yu6/pbzfpry7LCBtUaWghPnI7jZKrV6m5onl0ikQjryhSgRfkhonGvZVMtfr+XJoT4SNj8dzqd7hZCdHvTdYyxrZZlbU6n02PQ+v+WZRWamUMPotX7IQghhN61cAJMorxhAHJQMs6mmbI2UZaWb7azEBF9FjFr6k8T3wDwgPdUWY8mv8A4kzqc83cC+OcIk08BjefknK9DhxYVUeO8LOD7wYUQU9rrhhFpDyWugnaov1gsDimx189PRBNh8735fN4hok9rhzLVanXUtu1donFkfqqrq0v3GBrIZrNlv5B7e3unqtXqLqHmtQE5MLYg86llSHs9CR+t3ENRNNn9GNJeLygL0LrgcwhfbDMH4IchaX5OlRfwPcgVclcwxg4FuNQAwn+UJr/kOpzzdyM8ws39TD6wwk+nBN+wKSeg1dPfh7mWEEIMa6+9Vr5B7LlcLnKgMpfLjaLx87b7xZ5OpwdaHWhTHsKg9rvsVANjHceyrL3e55BcX7AA27bH0Dg1eIffRvfourq6AvveOq7rNgziaV2a0HIAQLFYjC0L0Lrgo27Oe9G8kEODW3aQe9G4mu1SxljgQhe/sBdTK3PO3w8grE/5VSykI4IXQvRrbwsBJvdprzNhg0P5fN4RQnwEWPi9NCN2D73i8NGy2B3HyQR4CI5y79vGdd1QdzuXy02mUqlzVLdi1J+u1vvv0O6VsB1ufd732Mo1e+Ryucl0Oh1aDkCWhYh2zB8JLUvL03KXR6SFLTDxcztk33Up+R8s3J13DMCl55133t7Dhw+f5x0UYuFz6Fpt2XVIDuTdqObqR3zJXyeiD3qfqW6WsP5006jFGVnvvZDz2A1YllXQF8kkk8lBhMy75/P5Uc759Wgc3JtsVuyAnJKybXsiQKRNi11d1yCAbWgsS9myrMCVZB7FYrEfEYtgiGgtIjwdoC7Qhs9Q4xmjUNNf6l4pR1RwsX14aOsMiGjBgragcgALy6KIKkvLgr8gIq2ZmG3jkGvwl5ICwgcWD5999tmXlsvln1UqlfXAvMsV1Mq3I3yvxuecb1dz9X+nJT+cTCaPnDx58gVay5DFIlGiqJNIJBasEOvt7Z2ybbus9X+vRMRCGyHEMGnzxWjuxm0glUqNVKvVQcznbfocpVJpN2kr4TyIKHRO3GN6eno7EYWOD/hRv0Wku61W9t3guu4QGq+jTETDjDHHn0dVWN7bgj89hGxUoioHXNe9AbLP3lRZPFp16cM4hvinw3wKrW/QaJU9iF/a+KsLL7xwM2PsKe9AkLD1vle7Lj7n/AMAbtOPbdq06WGg4TMXrLVvA310thwhhknvhRCioZLwk8/nC0Q0oR3qD5qbjyKbzZaFELqXkzl58mRTQqzVav3+Y8pL2Ry32Md13cjlwX6ICLVaLXRq78CBA2Ou6+51XXc7fAKzLGvAm0nw45tiC/VGfOMQoV6HbdteOfZCaimj3ZuRZfFoVfBhm1keRvRim9sA/E1Eeie4H403fhSPA3jJmjVrIjdceKJsp6UH6u79ByEXI3n8CGioRLr8+drA8V5Q4wh5A/pAjtBG7cNIpVIj0G7UiOm8UNRcfUE7lA009EGNi2+8rbgDAYORC0gkEnvRODUYYY0pIUTkeV3XvSTg8M50Ot0dVflYllUXrxBiX5idwitvqBdkWdaCcqhriy2LR6sufViwi0dCjgPyZv9gRHonuB8Lg2zEcWDDhg2X7t+/f+/c3NxZQGOr3gk09/5Dyr2/GXJ84RbNrCFQRjswxkZKpdIdtVotwxgrhNn19PQUSqXS5lqtlkmn07E3RzabLdu2PUxy26uTSqWaap39pNPpkdnZ2VEAWLVqVVMDbUKIAahltc2IXOeiiy6aRJP7w5shmUyOua7bR0SO67p3CyEmmymTZVmO1sf3ukcOEZUhW+edmu2EEGJ7IpEI/V28cgCyQmylLB6txrR7FMG75N6K4BHoWyGfCb+UPADgijijCPKO4/y0Wq2u6bTg/TDG/grAF5944onflMvlterYIQAXRuc0GDpDqy59GEEbQG7B0ov9QSxO7ABQzGazL0mn0zOtiJ1oYcy6ODjnXwBw67nnnutoh4PCfBkMS0InWvhZAL8LQO8Pj2F+O+NS4Ym9Uxt1Lj548OBDs7OzXUvd0uvnZ4wVAfxedA6DoTO02ocP6m/aaBT7Diy92H+CebFnOOd/EmTE5BNcvTnpyzjn2RC7PQAe6e7uvty27Z8KIRZ8L0tYCTwTZ2AwdIpWBX8I8vHJOvpy0R2ICWzZAR5GY8t+sWVZ39QXlWgcAXCuen0rgFcFGUE+zHISwL5cLnf59PT0Q7VazerE1FwQvnM5IWYGQ8dptQ/vBBw7ov5/CKdG7Jej8RltlYjpsyPzLxte+9GXBD/c09NzxapVqxaIvNU+e5OEBgI1GDpNq4IPcj//FzICjj7XvBQEiR3AfFy1gFa43Yc3Prhp06Yr/ALvVCuvn4dzfhWWvgtkMABoXfC/CDh2K4BvBxzvJPsg3fh2BdwOD+RyuSvDWvV2Ruk9/Pk452MAPhxsbTB0jlYFH7S98wUBxzrJI5AtezvTV7HXFyPaPblc7pW6bbsij4NzfguM6A1LTKuDdj+EHCyLFVKHeATASyBDZ4URtTQ1q70O3JKr3OuofvQPGGOv5Zx/V3fFO+Xe63DOb1G77P4xznYpUFtmh/P5/Cggt13WarV6RBn1IISRrq6u8azaqeblSSQSd/X29k6VSqU+9Wy0XV4+z8aXrx9y38OufD7v+N8HlSdoB5yWNkREW4UQU97nKHvk8/mC/1w6Kq0/n89PqFj0WcbYTqAem35YyKXIetmGABRU2bOJRKLfe9LP9PT0mIpZCP2aVb4xIuqzLOsuz75YLGYtyxr2tr/6v/dO0qrgH4cUYdDa4k7zc8iWPS7AuJ3L5W6CrIT0ofoUGjf0fIIxdh8az+dVXHGPcP4eY+xazvmCgIXtCF+EbMkVQoBzfqsS/ceCcy8pWZL7qkcBoFarDSeTSQdqsHZubm6IiHZUq9WnMb/TLktEO2q1WhbADbVa7XYi2pJIJHZ7+RKJxIjrujdWKpWDACZUvgEi2iFk1NgbiOgOABvVElRH2YwR0fW2be/VN4UQ0ZCQ4bEdQO4gI6LbhYzJN3Dy5Mks5O43r3IowHdtOslkMjs3NzdcLBZBRLdblnUlUK9EbhdCbCOirQDudhznSiXgYcjPdyAblmGoayOiHZZlbXVdd6RSqWQB3AAAnPOfkYyUe5frumOc84yqWLKWZella/jeO0mrggeAA1h6wU9Dir2ZgBpHAHw8zghy+24zW3jDuIcx9gbbtr/Zjsh1groFvoG8jyrRN3NdHUdFTwERZb2WCgBqtdqIEOJOIhqBtrVWCLGPiAZt2x60LKvPdd09ej4h98R/WuWbwDyHiOh6zvle+HAcJ0Ny2++nhdzfPal2lRVUy73L22VWq9XKJPe3DwAY7e3tdfzni4NkiLBdlmXpu/GGAUyoDUATnPPfqNiBhZDT1BFCDKhzTgH18NSXCCGuzefzDuc8A3n+ncpez7tkXcdWXfN3AnhNnNEicSDd+GYXpJwF4GrIkM9Xa3+vh3xCjscl6phuc436W4fm+FYul2vqqTOLhXN+G5Z+01HTTE9P90OusnSgnmWmJZeFEJOq5doJDeUSr1VvL9Ej7QghHCHEnUKIMchYCXVU9FsIuX//Gj2fZTXetipKTzcAENFBX9laYZ//Uc1CiAWVkYcXJdYfLRYAhBBlzLf+SCQSZQDHPTddCKHHJmh4gk/ImpKO0EoL/3bEPAu+AxyCfIx0vc/TBBeXSqX/CApSqWLIbVCHbuWcXx10AsbY6wD8Z1BaAF9ljCU553fEGfoJqrmjanPO+W2MMQun2L339ZkBAHNzc8NQqxaFjKgzjMaWbhTA9QB2QYtM67ruMBHdowSwR7Xy27R8uyzLGkylUhPVarUuemVXgBTNvmQyOQzl8vq/L/Ukm62JRGJc7WrzWuGDRDRWLBZ3K5c8dIuqEGIqkUhsc133Pq8LQfJRUyPFYtGB7ILU964T0ZTruiPFYrEMYES54HW6urrGK5UKiGgIkAFIOOdlzvl2InLU9U0CcoyBc+6NC4CItszNzTWcr1M028IPIf6BC4vlcUix1wNTNImrz8Prf2hc8hu1973V6b47GWPDjLFh/eaLc8MoYHluXB7O+UchFzUtOYlEokxaoEQimlItE4gok0gktuXz+dFEIrENat+2yjOVz+cdxhjlZdTaej7IbaDbVCUyivmB1IMqXyGXy52dzWbLRLQnkUiUVYz9cjqdviGfz48SkZ4PAPTzI5VKFQA4ruveARlGawIAurq6JgGMk+yHZ4QQ1yIAIUSZiKZ6e3unhBDbhAoRxRjbKYQYJzm+0O/17QEgnU6PEtEUEd1BRFNzc3P1sQEi2lOpVO4moj4xH5ceQogrhRCblUdTSKfTo1ragKqUhoUQw0sxYAc0t3nmOgBfiTNaJJ7Yo1bDhXGZbdsP6dfhCYsxNgVgszr8Fc75df7MRIRcLvdqzD+iulWGOOe74owWC2PsJpymPr3huUNcC/8WLG+xA1jYp2uiEqvTim0IE4yxd8QZLZbl1qc3nJlECf7NWPoHSxyGHKBrW+xAvFscxWLyanyZMRb3RN1FY0RvWCxhgv8wgK+FpHWKw5At++E4wxjWRLTSOe11UKQer4UPC93VCp9njL0vzmixKNF/CR0IjWVYeQSN0m+CDPP8HTQ3D94qScjFL38LIPDBEC0yvW7dutFjx47Bsiy4rlv/Dznq7zFORN9PJpMN0x6qO+DNuy6WzzHGXM75myzLWjBrsBiICM973vPw29/+Njk9Pf1HPT09L0MT88EGg04zg3YGg+E5QtygncFgeA5hBG8wrCCM4A2GFYQRvMGwgjCCNxhWEEbwBsMKwgjeYFhBGMEbDCsII3iDYQVhBG8wrCCM4A2GFYQRvMGwgjCCNxhWEEbwBsMK4v8BgJYsFfmd5YsAAAAASUVORK5CYII="/></g></g></g></g></svg>
-                </div>
-                <p class="small text-white">静岡県浜松市東区笠井町</p>
-            </div>
-            <ul class="nav py-5 mx-auto justify-content-center">
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">ホーム</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">目的別フィルム</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">フィルムの種類</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">料金表</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">よくある質問</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link border-right text-white py-0" href="#">店舗情報</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-white py-0" href="#">お問い合わせ</a>
-                </li>
-            </ul>
+          </div>
+          <!-- ./col -->
         </div>
-        <p class="small copyright text-center mb-0 py-1">Copyright © All Rights Reserved.</p>
-    </footer>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="./js/jquery-3.5.1.slim.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script>
-        $('.carousel').carousel({
-            interval: 3000
-        })
-    </script>
-  </body>
+        <!-- /.row -->
+        <div class="content-header text-center">
+            <h2 class="m-2 noto-serif">News</h2>
+        </div>
+        <div class="news-box p-3 oveflow-auto">
+          <div class="news-box-inner" id="scroll">
+            <div class="card card-widget">
+              <div class="card-header pb-0">
+                <div class="user-block">
+                  <p class="mb-1"><i class="fas fa-user pr-2"></i>デモサイト公開！！ </p>
+                  <p class="small news--date mb-0">公開日 2021.03.01 09:00</p>
+                </div>
+                <!-- /.user-block -->
+                <div class="card-tools">
+                  <!-- <button title="Mark as read" class="btn btn-tool" type="button">
+                    <i class="far fa-circle"></i>
+                  </button> -->
+                  <button class="btn btn-tool" type="button" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button class="btn btn-tool" type="button" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pb-0">
+                <div class="card-body-inner border-bottom pb-4">
+                <!-- <img class="img-fluid pad" alt="Photo" src="../dist/img/photo2.png"> -->
+                  <p class="card-text">開発中のデモサイトを公開いたしました！！</p>
+                  <button class="btn btn--like text-gray" type="button">
+                    いいね
+                  </button>
+
+                  <span class="float-right text-muted text-gray">1 いいね</span>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+            </div>
+            <div class="card card-widget">
+              <div class="card-header pb-0">
+                <div class="user-block">
+                  <p class="mb-1"><i class="fas fa-user pr-2"></i>デモサイト公開！！</p>
+                  <p class="small news--date mb-0">公開日 2021.03.01 09:00</p>
+                </div>
+                <!-- /.user-block -->
+                <div class="card-tools">
+                  <button class="btn btn-tool" type="button" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button class="btn btn-tool" type="button" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pb-0">
+                <div class="card-body-inner border-bottom pb-4">
+                <!-- <img class="img-fluid pad" alt="Photo" src="../dist/img/photo2.png"> -->
+                  <p class="card-text">〇〇機能の開発が終わりましたので、引き続き、〇〇機能を公開中！！<br>〇月〇日より、先行登録開始予定！！！乞うご期待</p>
+                  <button class="btn btn--like text-gray" type="button">
+                    いいね
+                  </button>
+
+                  <span class="float-right text-muted text-gray">1 いいね</span>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+            </div>
+            <div class="card card-widget">
+              <div class="card-header pb-0">
+                <div class="user-block">
+                  <p class="mb-1"><i class="fas fa-user pr-2"></i>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキ </p>
+                  <p class="small news--date mb-0">公開日 2021.03.01 09:00</p>
+                </div>
+                <!-- /.user-block -->
+                <div class="card-tools">
+                  <!-- <button title="Mark as read" class="btn btn-tool" type="button">
+                    <i class="far fa-circle"></i>
+                  </button> -->
+                  <button class="btn btn-tool" type="button" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button class="btn btn-tool" type="button" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pb-0">
+                <div class="card-body-inner border-bottom pb-4">
+                <!-- <img class="img-fluid pad" alt="Photo" src="../dist/img/photo2.png"> -->
+                  <p class="card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                  <button class="btn btn--like text-gray" type="button">
+                    いいね
+                  </button>
+
+                  <span class="float-right text-muted text-gray">100000000 いいね</span>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+            </div>
+            <div class="card card-widget">
+              <div class="card-header pb-0">
+                <div class="user-block">
+                  <p class="mb-1"><i class="fas fa-user pr-2"></i>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキ </p>
+                  <p class="small news--date mb-0">公開日 2021.03.01 09:00</p>
+                </div>
+                <!-- /.user-block -->
+                <div class="card-tools">
+                  <!-- <button title="Mark as read" class="btn btn-tool" type="button">
+                    <i class="far fa-circle"></i>
+                  </button> -->
+                  <button class="btn btn-tool" type="button" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button class="btn btn-tool" type="button" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pb-0">
+                <div class="card-body-inner border-bottom pb-4">
+                <!-- <img class="img-fluid pad" alt="Photo" src="../dist/img/photo2.png"> -->
+                  <p class="card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                  <button class="btn btn--like text-gray" type="button">
+                    いいね
+                  </button>
+
+                  <span class="float-right text-muted text-gray">1 いいね</span>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.0.0
+    </div>
+  </footer> -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+</body>
 </html>
